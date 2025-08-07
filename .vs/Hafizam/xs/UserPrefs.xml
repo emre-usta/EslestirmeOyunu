@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{B9B549DF-3865-3218-3721-5D30D73E11FD}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GameController.cs">
+    <Files>
+      <File FileName="Assets/GameController.cs" Line="30" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Hafizam" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="767a3498-d63d-4264-bdf4-a8e9906939a9" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
