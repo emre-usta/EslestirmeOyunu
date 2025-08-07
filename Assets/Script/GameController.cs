@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,24 +23,41 @@ public class GameController : MonoBehaviour
 
     public void ButtonClicked(int value)
     {
-        //Debug.Log("Evet, Tıkladı: Gelen değer : " + value);
+        Controls(value);
+    }
 
+    void Controls(int IncomingValue)
+    {
         if (selectedNumber == 0)
         {
-            selectedNumber = value;
+            selectedNumber = IncomingValue;
+            selectedButton = theButtonItself;
         }
         else
         {
-            if (selectedNumber == value)
-            {
-                Debug.Log("Bir eşleşme gerçekleşti !");
-                selectedNumber = 0;
-            }
-            else
-            {
-                Debug.Log("Eşleşmedi !");
-                selectedNumber = 0;
-            }
+            StartCoroutine(CheckMatchWithDelay(IncomingValue));
+        }
+    }
+
+    IEnumerator CheckMatchWithDelay(int IncomingValue)
+    {
+        yield return new WaitForSeconds(1);
+
+        if (selectedNumber == IncomingValue)
+        {
+            Destroy(selectedButton.gameObject);
+            Destroy(theButtonItself.gameObject);
+            
+            selectedNumber = 0;
+            selectedButton = null;
+        }
+        else
+        {
+            selectedButton.GetComponent<Image>().sprite = defultSprite;
+            theButtonItself.GetComponent<Image>().sprite = defultSprite;
+
+            selectedNumber = 0;
+            selectedButton = null;
         }
     }
 
