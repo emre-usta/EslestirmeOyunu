@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     int selectedNumber;
     GameObject selectedButton;
     GameObject theButtonItself;
+    public AudioSource[] voices;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour
     {
         theButtonItself = myObject;
         theButtonItself.GetComponent<Image>().sprite = theButtonItself.GetComponentInChildren<SpriteRenderer>().sprite;
+        voices[1].Play();
     }
 
     public void ButtonClicked(int value)
@@ -53,6 +55,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            voices[2].Play();
             selectedButton.GetComponent<Image>().sprite = defultSprite;
             theButtonItself.GetComponent<Image>().sprite = defultSprite;
 
