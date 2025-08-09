@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     GameObject selectedButton;
     GameObject theButtonItself;
     public AudioSource[] voices;
+    public GameObject[] buttons;
 
     void Start()
     {
@@ -20,7 +21,19 @@ public class GameController : MonoBehaviour
     {
         theButtonItself = myObject;
         theButtonItself.GetComponent<Image>().sprite = theButtonItself.GetComponentInChildren<SpriteRenderer>().sprite;
+        theButtonItself.GetComponent<Image>().raycastTarget = false;
         voices[1].Play();
+    }
+
+    void SetButtonsActiveState(bool state)
+    {
+        foreach(var item in buttons)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Image>().raycastTarget = state;
+            }
+        }
     }
 
     public void ButtonClicked(int value)
@@ -43,24 +56,25 @@ public class GameController : MonoBehaviour
 
     IEnumerator CheckMatchWithDelay(int IncomingValue)
     {
+        SetButtonsActiveState(false);
         yield return new WaitForSeconds(1);
 
         if (selectedNumber == IncomingValue)
         {
             Destroy(selectedButton.gameObject);
             Destroy(theButtonItself.gameObject);
-            
             selectedNumber = 0;
             selectedButton = null;
+            SetButtonsActiveState(true);
         }
         else
         {
             voices[2].Play();
             selectedButton.GetComponent<Image>().sprite = defultSprite;
             theButtonItself.GetComponent<Image>().sprite = defultSprite;
-
             selectedNumber = 0;
             selectedButton = null;
+            SetButtonsActiveState(true);
         }
     }
 
