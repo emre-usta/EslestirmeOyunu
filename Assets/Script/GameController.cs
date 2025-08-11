@@ -61,8 +61,10 @@ public class GameController : MonoBehaviour
 
         if (selectedNumber == IncomingValue)
         {
-            Destroy(selectedButton.gameObject);
-            Destroy(theButtonItself.gameObject);
+            selectedButton.GetComponent<Image>().enabled = false;
+            theButtonItself.GetComponent<Image>().enabled = false;
+            selectedButton.GetComponent<Button>().enabled= false;
+            theButtonItself.GetComponent<Button>().enabled = false;
             selectedNumber = 0;
             selectedButton = null;
             SetButtonsActiveState(true);
