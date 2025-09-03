@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI counter;
     public GameObject[] endGamePanels;
     
-    float TotalTime = 10;
+    public float TotalTime = 120;
     float Minute;
     float Second;
     bool Timer;
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         currentButton = myObject;
         currentButton.GetComponent<Image>().sprite = currentButton.GetComponentInChildren<SpriteRenderer>().sprite;
         currentButton.GetComponent<Image>().raycastTarget = false;
-        voices[1].Play();
+        voices[0].Play();
     }
 
     void SetButtonsActiveState(bool state)
@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            voices[2].Play();
+            voices[1].Play();
             selectedButton.GetComponent<Image>().sprite = defultSprite;
             currentButton.GetComponent<Image>().sprite = defultSprite;
             selectedNumber = 0;
