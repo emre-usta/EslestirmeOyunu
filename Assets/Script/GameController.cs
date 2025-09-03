@@ -125,6 +125,17 @@ public class GameController : MonoBehaviour
         endGamePanels[0].SetActive(true);
     }
 
+    public void PlayPause()
+    {
+        endGamePanels[2].SetActive(true);
+        Time.timeScale = 0;
+    }
+    
+    public void PlayContinue()
+    {
+        endGamePanels[2].SetActive(false);
+        Time.timeScale = 1;
+    }
     void Win()
     {
         endGamePanels[1].SetActive(true);

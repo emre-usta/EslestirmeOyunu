@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      OyunAnaArkaplan_0: 3908975999712819060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
