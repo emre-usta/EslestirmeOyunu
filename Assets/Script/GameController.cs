@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -22,11 +23,22 @@ public class GameController : MonoBehaviour
     float Minute;
     float Second;
     bool Timer;
+
+    public GameObject Grid;
+    public GameObject ObjectPool;
+    private bool CreateStatus;
+    private int createSize;
+    private int totalElementCount;
     
     void Start()
     {
         selectedNumber = 0;
         Timer = true;
+        CreateStatus = true;
+        createSize = 0;
+        totalElementCount = ObjectPool.transform.childCount;
+
+        StartCoroutine(CreateObject());
     }
     
     void Update()
@@ -45,6 +57,30 @@ public class GameController : MonoBehaviour
             counter.text = "Süre Bitti";
             Timer = false;
             GameOver();
+        }
+        
+    }
+    
+    IEnumerator CreateObject()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        while (CreateStatus)
+        {
+            int RandomObject = Random.Range(0, ObjectPool.transform.childCount - 1);
+
+            if (ObjectPool.transform.GetChild(RandomObject).GameObject() != null)
+            {
+                ObjectPool.transform.GetChild(RandomObject).transform.SetParent(Grid.transform);
+                createSize++;
+
+                if (createSize == totalElementCount)
+                {
+                    CreateStatus = false;
+                    Destroy(ObjectPool.gameObject);
+                }
+            }
+            
         }
         
     }
@@ -119,7 +155,8 @@ public class GameController : MonoBehaviour
             SetButtonsActiveState(true);
         }
     }
-
+    
+    
     void GameOver()
     {
         endGamePanels[0].SetActive(true);
